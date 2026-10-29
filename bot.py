@@ -7,7 +7,7 @@ from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, Messa
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 # আপনার টেলিগ্রাম বটের API টোকেন
-TOKEN = "9197313606:AAFbAPyFU27ZY4q8Ojg6lhv5ormUt9K2OZk"
+TOKEN = "9095452020:AAEmhuXEeYpHoOINqtjSm8IZLh7w9JnOJ9A"
 
 # ব্র্যান্ডিং তথ্য ও চ্যানেলের তালিকা
 TEAM_NAME = "MAHID DVP HELP TEAM"
@@ -60,7 +60,10 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup = InlineKeyboardMarkup(keyboard)
         await query.message.edit_text(
             "🛡️ <b>MAHID DVP SECURE OBFUSCATOR</b>\n\n"
-            "আপনার প্রটেক্ট করার জন্য যেকোনো <b>HTML কোড (টেক্সট আকারে)</b> অথবা সরাসরি একটি <b>.html ফাইলের (.txt/.html)</b> ডকুমেন্টস এই চ্যাটে পাঠিয়ে দিন!",
+            "⏳ <b>Duration:</b> Unlimited\n"
+            "💰 <b>Cost:</b> FREE\n"
+            "📦 <b>Max size:</b> 50MB\n\n"
+            "আপনার প্রটেক্ট করার জন্য যেকোনো <b>HTML কোড (টেক্সট আকারে)</b> অথবা সরাসরি একটি <b>.html ফাইলের</b> ডকুমেন্ট এই চ্যাটে পাঠিয়ে দিন!",
             reply_markup=reply_markup,
             parse_mode="HTML"
         )
@@ -68,16 +71,14 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("📢 Join Channel", url=f"https://t.me/{REQUIRED_CHANNELS[0].replace('@', '')}")],
-        [InlineKeyboardButton("🛡️ Protect New Code", callback_data="protect_code_menu")],
-        [InlineKeyboardButton("📦 My Secured Files", callback_data="main_menu")],
-        [InlineKeyboardButton("⭐ Redeem Code", callback_data="main_menu"), InlineKeyboardButton("👥 Referral", callback_data="main_menu")],
-        [InlineKeyboardButton("👑 Premium Subscription", callback_data="main_menu"), InlineKeyboardButton("🐛 Report Bug", callback_data="main_menu")]
+        [InlineKeyboardButton("🛡️ Protect Code", callback_data="protect_code_menu")],
+        [InlineKeyboardButton("👨‍💻 Telegram Admin", url=f"https://t.me/{ADMIN_HANDLE.replace('@', '')}")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     caption_text = (
         "✅ <b>VERIFIED!</b>\n\n"
-        f"Thank you for joining our channels, {update.effective_user.first_name}!\n\n"
+        f"Thank you for joining {REQUIRED_CHANNELS[0]}, {REQUIRED_CHANNELS[1]}, {REQUIRED_CHANNELS[2]}!\n\n"
         "💰 Balance: <b>$0</b> | ⭐ Stars: <b>0</b>\n\n"
         "নিচের অপশনগুলো থেকে আপনার প্রয়োজনীয় কাজটি সিলেক্ট করুন:"
     )
@@ -86,10 +87,8 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def show_main_menu_callback(query, context):
     keyboard = [
         [InlineKeyboardButton("📢 Join Channel", url=f"https://t.me/{REQUIRED_CHANNELS[0].replace('@', '')}")],
-        [InlineKeyboardButton("🛡️ Protect New Code", callback_data="protect_code_menu")],
-        [InlineKeyboardButton("📦 My Secured Files", callback_data="main_menu")],
-        [InlineKeyboardButton("⭐ Redeem Code", callback_data="main_menu"), InlineKeyboardButton("👥 Referral", callback_data="main_menu")],
-        [InlineKeyboardButton("👑 Premium Subscription", callback_data="main_menu"), InlineKeyboardButton("🐛 Report Bug", callback_data="main_menu")]
+        [InlineKeyboardButton("🛡️ Protect Code", callback_data="protect_code_menu")],
+        [InlineKeyboardButton("👨‍💻 Telegram Admin", url=f"https://t.me/{ADMIN_HANDLE.replace('@', '')}")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
@@ -190,7 +189,7 @@ def main():
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), process_code))
     app.add_handler(MessageHandler(filters.Document.ALL, process_code))
 
-    print("🤖 MAHID DVP Bot is running...")
+    print("🤖 MAHID DVP Bot is running with customized clean menu...")
     app.run_polling()
 
 if __name__ == "__main__":
